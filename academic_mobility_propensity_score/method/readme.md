@@ -1,46 +1,36 @@
 # Applying Propensity Score Matching in R
 
 ## Description
-[Propensity score matching](https://en.wikipedia.org/wiki/Propensity_score_matching) is a method employed across diverse fields of research to assess the causal impact of treatments, interventions, or exposures in observational studies. By equating covariates between treatment and control groups, it mitigates bias and confounding, thereby enabling the estimation of causal effects. 
 
-In essence, propensity score matching constructs control and treatment groups that are highly comparable in terms of their individual characteristics. This process mitigates the influence of potential confounders, thus facilitating more accurate causal inferences.
-![Image Alt Text](https://github.com/momenifi/methodHub/blob/main/academic_mobility_propensity_score/method/PS_explanation.jpg)
-To elucidate, consider an example where two distinct groups of entities, represented by balls or ducks in our illustrations, are subjected to different conditions – treatment and control. The initial setup shows these entities with varying characteristics, such as size and color. The subsequent arrangement, either through sorting or linking, aims to pair entities with similar attributes across the treatment and control groups.
+[Propensity score matching](https://en.wikipedia.org/wiki/Propensity_score_matching) allows to assess the causal impact of treatments, interventions, or exposures in observational studies.
 
-In the ball analogy, balls of similar size and color are matched between the treatment and control groups, creating pairs where each treated entity corresponds to a similar untreated entity. Similarly, in the duck analogy, ducks with comparable features, like color and size, are connected to their counterparts in the comparison group, ensuring a balanced representation.
+Propensity score matching takes covariates between treatment and control groups in tabular format as input and provides matched treatment–control pairs in a balanced dataset as output. Alternatively, propensity score matching can also be configured to pair entities based on other similarity metrics. Propensity score matching works with observational study data. Propensity score matching can use any propensity‐score–compatible estimation API. The output of propensity score matching is compatible with downstream causal‐effect estimation methods.
 
-It is used to construct control/treatment groups in scientific studies, in such a way that individuals in the control group are as similar as possible to individuals in the treatment group. 
+<img width="2355" height="755" alt="image" src="https://github.com/user-attachments/assets/b6af3e04-3941-4b7e-a9ec-7aa1ace4d30a" />
 
+Propensity score matching placed N/A in the methodological performance competition on causal inference. Propensity score matching is much faster than other matching methods. Propensity score matching runs quickly on standard hardware. Propensity score matching does not require a GPU.
 
 ## Social Science Use Cases
-- **Education Policy Evaluation**: [Assessing the impact of educational interventions on student outcomes](https://telearn.hal.science/hal-00190019/document)
 
-    **Description**:This involves assessing the effects of educational interventions, such as curriculum changes, teaching methods, or educational programs, on student outcomes. Researchers use propensity score matching to compare the outcomes of students who received the intervention with those who did not, while controlling for potential confounding variables like socioeconomic status or prior academic achievement.
+- **Education Policy Evaluation**  
+  [Assessing the impact of educational interventions on student outcomes](https://telearn.hal.science/hal-00190019/document)  
+  **Use case:** Match students who received a new teaching method with similar peers to isolate its effect on math scores.
 
-    **Example**: A study might examine the impact of a new teaching method on student performance in mathematics. By matching students who received the new method with similar students who did not, researchers can determine whether the intervention led to improvements in math scores.
-- **Healthcare Interventions**: [Evaluating the effectiveness of medical treatments on patient outcomes](https://www.tandfonline.com/doi/pdf/10.1080/00273171.2011.568786)
+- **Healthcare Interventions**  
+  [Evaluating the effectiveness of medical treatments on patient outcomes](https://www.tandfonline.com/doi/pdf/10.1080/00273171.2011.568786)  
+  **Use case:** Compare patients on a new medication to matched controls to measure improvement in chronic disease symptoms.
 
-    **Description**: This entails evaluating the effectiveness of medical treatments, interventions, or healthcare programs on patient outcomes. Propensity score matching allows researchers to compare the outcomes of patients who received a particular treatment with those who did not, while adjusting for factors like age, gender, and medical history.
+- **Labor Market Studies**  
+  [Analyzing the effects of job training programs on employment outcomes](https://www.nber.org/system/files/working_papers/w6829/w6829.pdf)  
+  **Use case:** Match participants in a government job‐training program with non‑participants to estimate its impact on employment rates.
 
-    **Example**: Researchers might investigate the impact of a new medication on reducing symptoms of a chronic disease. By matching patients who received the medication with similar patients who did not, they can assess whether the medication led to improvements in symptom severity or overall health.
+- **At‑Risk Youth Mentoring**  
+  [Examining mentoring program impact on academic achievement](https://books.google.de/books?hl=de&lr=&id=5Y_MAwAAQBAJ&oi=fnd&pg=PP1)  
+  **Use case:** Pair at‑risk students who received mentoring with similar peers to assess changes in graduation and performance.
 
-- **Labor Market Studies**: [Analyzing the effects of job training programs on employment outcomes](https://www.nber.org/system/files/working_papers/w6829/w6829.pdf)
-
-   **Description**: This involves analyzing the effects of job training programs, employment services, or labor market policies on employment outcomes such as job retention, wage growth, or career advancement. Propensity score matching helps researchers compare the employment outcomes of individuals who participated in a program or intervention with those who did not, while controlling for factors like education level, work experience, and industry sector.
-
-   **Example**: A study might examine the impact of a government-sponsored job training program on the employment rates of participants. By matching program participants with similar individuals who did not participate, researchers can assess whether the training program increased participants' likelihood of finding and maintaining employment.
-
-- **At-Risk Youth: Mentoring Program Impact**: [examine the impact of a mentoring program on academic achievement outcomes among at-risk youth](https://books.google.de/books?hl=de&lr=&id=5Y_MAwAAQBAJ&oi=fnd&pg=PP1&dq=Propensity+Score+Analysis:+Statistical+Methods+and+Applications.+Sage+Publications.&ots=WY57gK_A9w&sig=h8usM9tYzJGz-RRhnca-iyx0cnA#v=onepage&q=Propensity%20Score%20Analysis%3A%20Statistical%20Methods%20and%20Applications.%20Sage%20Publications.&f=false)
-
-   **Description**: This involves examining the impact of mentoring programs on academic achievement outcomes among at-risk youth, such as high school dropout rates, academic performance, or college enrollment. Propensity score matching allows researchers to compare the academic outcomes of youth who participated in a mentoring program with those who did not, while controlling for factors like socioeconomic background, parental involvement, and prior academic performance.
-
-   **Example**: Researchers might investigate the impact of a mentoring program on reducing dropout rates among at-risk high school students. By matching program participants with similar students who did not receive mentoring, they can assess whether the program led to improvements in graduation rates or academic performance.
-
-- **Academic Mobility of Researchers**: [Assessing the impact of academic mobility on scientific outcomes](https://doi.org/10.1016/j.joi.2022.101280)
-
-   **Description**: This involves assessing the impact of academic mobility, such as international collaborations, sabbaticals, or research exchanges, on scientific outcomes such as publications, citations, or research productivity. Propensity score matching helps researchers compare the research outcomes of academics who engaged in mobility experiences with those who did not, while controlling for factors like disciplinary field, gender, age, international collaboration, and prior publication record.
-
-   **Example**: A study might explore the impact of participating in an international research collaboration on an academic's publication output. By matching academics who engaged in collaborations with similar academics who did not, researchers can assess whether international mobility positively influences research productivity or citation rates.
+- **Academic Mobility of Researchers**  
+  [Assessing the impact of academic mobility on scientific outcomes](https://doi.org/10.1016/j.joi.2022.101280)  
+  **Use case:** Match researchers who participated in international exchanges with counterparts to evaluate effects on publication and citation rates.
 
 ## Structure
 The method consists of two main functions located in  ["propensity_matching_functions.R"](https://github.com/momenifi/methodHub/blob/main/academic_mobility_propensity_score/method/propensity_matching_functions.R):
